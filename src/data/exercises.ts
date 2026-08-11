@@ -46,6 +46,9 @@ export const allExercises: Exercise[] = [
   { id: 'e18', name: 'Crunches', description: 'Lie on your back and lift your shoulders off the floor.', durationSeconds: 20, imageUrl: '/exercises/Crunches.gif', muscles: ['abs'] },
   { id: 'e19', name: 'Heel Touch', description: 'Lie on back, knees bent, and reach alternately for your heels.', durationSeconds: 20, imageUrl: '/exercises/Alternate-Heel-Touchers.gif', muscles: ['obliques', 'abs'] },
   { id: 'e20', name: 'Flutter Kick', description: 'Lie on back and flutter straight legs up and down.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] },
+  { id: 'e25', name: 'Dead Bug', description: 'Lie on your back, extend opposite arm and leg while keeping core tight.', durationSeconds: 30, imageUrl: '/exercises/Alternate-Heel-Touchers.gif', muscles: ['abs', 'obliques'] },
+  { id: 'e26', name: 'Bodyweight Sumo Squat', description: 'Take a wide stance and squat down, keeping your back straight.', durationSeconds: 30, imageUrl: '/exercises/Jump-Squat.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
+  { id: 'e27', name: 'Burpees', description: 'Drop into a squat, kick back to a plank, return to squat, and jump up.', durationSeconds: 30, imageUrl: '/exercises/Jump-Squat.gif', muscles: ['quadriceps', 'gluteal', 'chest', 'abs'] },
   { id: 'rest', name: 'Rest', description: 'Take a quick breather to recover.', durationSeconds: 10, imageUrl: '/exercises/Rest.png', muscles: [] }
 ];
 
@@ -239,6 +242,56 @@ export const singleWorkouts = [
       { name: 'Jump Squats', durationSeconds: 20, id: 't5-6' },
       { name: 'Jump Squats', durationSeconds: 20, id: 't5-7' },
       { name: 'Jump Squats', durationSeconds: 20, id: 't5-8' }
+    ]
+  },
+  {
+    id: '300-calorie-hiit',
+    title: '300 Calorie HIIT Workout',
+    description: 'Workout / At Home, Body Weight, Fat Burning, Full Body / Advanced, Beginners',
+    caloriesBurned: 300,
+    imageUrl: '/workouts/hiit.png',
+    exercises: [
+      { name: 'High Knee Skips', durationSeconds: 30, id: 'hiit-1-1' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-1-r1' },
+      { name: 'High Knee Skips', durationSeconds: 30, id: 'hiit-1-2' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-1-r2' },
+      { name: 'High Knee Skips', durationSeconds: 30, id: 'hiit-1-3' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-1-r3' },
+      { name: 'Skater Jumps', durationSeconds: 30, id: 'hiit-2-1' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-2-r1' },
+      { name: 'Skater Jumps', durationSeconds: 30, id: 'hiit-2-2' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-2-r2' },
+      { name: 'Skater Jumps', durationSeconds: 30, id: 'hiit-2-3' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-2-r3' },
+      { name: 'Mountain Climber', durationSeconds: 30, id: 'hiit-3-1' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-3-r1' },
+      { name: 'Mountain Climber', durationSeconds: 30, id: 'hiit-3-2' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-3-r2' },
+      { name: 'Mountain Climber', durationSeconds: 30, id: 'hiit-3-3' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-3-r3' },
+      { name: 'Jump Squats', durationSeconds: 30, id: 'hiit-4-1' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-4-r1' },
+      { name: 'Jump Squats', durationSeconds: 30, id: 'hiit-4-2' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-4-r2' },
+      { name: 'Jump Squats', durationSeconds: 30, id: 'hiit-4-3' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-4-r3' },
+      { name: 'Dead Bug', durationSeconds: 30, id: 'hiit-5-1' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-5-r1' },
+      { name: 'Dead Bug', durationSeconds: 30, id: 'hiit-5-2' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-5-r2' },
+      { name: 'Dead Bug', durationSeconds: 30, id: 'hiit-5-3' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-5-r3' },
+      { name: 'Bodyweight Sumo Squat', durationSeconds: 30, id: 'hiit-6-1' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-6-r1' },
+      { name: 'Bodyweight Sumo Squat', durationSeconds: 30, id: 'hiit-6-2' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-6-r2' },
+      { name: 'Bodyweight Sumo Squat', durationSeconds: 30, id: 'hiit-6-3' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-6-r3' },
+      { name: 'Burpees', durationSeconds: 30, id: 'hiit-7-1' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-7-r1' },
+      { name: 'Burpees', durationSeconds: 30, id: 'hiit-7-2' },
+      { name: 'Rest', durationSeconds: 20, id: 'hiit-7-r2' },
+      { name: 'Burpees', durationSeconds: 30, id: 'hiit-7-3' }
     ]
   }
 ];
