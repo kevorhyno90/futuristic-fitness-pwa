@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Play, Pause, SkipForward, CheckCircle } from 'lucide-react';
 import Model from 'react-body-highlighter';
-import { workoutPlans, singleWorkouts } from '../data/exercises';
+import { workoutPlans, singleWorkouts, allExercises } from '../data/exercises';
 import type { Exercise, WorkoutDay } from '../data/exercises';
 import { saveCompletedDay } from '../data/db';
 import './WorkoutExecution.css';
@@ -37,7 +37,12 @@ export default function WorkoutExecution() {
   if (planId === 'single') {
     const sw = singleWorkouts.find(w => w.id === dayNumberStr);
     if (sw) {
-      dayPlan = { dayNumber: 1, isRestDay: false, exercises: sw.exercises, caloriesBurned: sw.caloriesBurned };
+      // Map partial exercises to full Exercise type by looking up allExercises
+      const fullExercises: Exercise[] = sw.exercises.map(partialEx => {
+        const fullEx = allExercises.find(e => e.name === partialEx.name) || allExercises[0];
+        return { ...fullEx, durationSeconds: partialEx.durationSeconds };
+      });
+      dayPlan = { dayNumber: 1, isRestDay: false, exercises: fullExercises, caloriesBurned: sw.caloriesBurned };
     }
   } else {
     const plan = workoutPlans.find(p => p.id === planId);
