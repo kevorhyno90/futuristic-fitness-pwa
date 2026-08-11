@@ -1,0 +1,76 @@
+.music-player {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 250px;
+  z-index: 100;
+  border-radius: 16px;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-icon {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.4rem;
+  border-radius: 50%;
+  display: flex;
+}
+
+.track-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.player-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+}
+
+.player-btn:hover {
+  color: var(--accent-color);
+}
+
+.player-btn.primary {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+.player-btn.primary:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .music-player {
+    bottom: 5rem;
+    right: 1rem;
+    width: 200px;
+  }
+}
