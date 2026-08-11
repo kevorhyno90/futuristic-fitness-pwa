@@ -28,7 +28,7 @@ export default function Workouts() {
     return completedDays.some(d => d.dayNumber === dayNumber);
   };
 
-  const isDayLocked = (dayNumber: number) => {
+  const isDayLocked = () => {
     return false;
   };
 
