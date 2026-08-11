@@ -4,7 +4,12 @@ import './MusicPlayer.css';
 
 const TRACKS = [
   { id: 1, title: 'Electronic Pulse', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { id: 2, title: 'Gym Energy', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' }
+  { id: 2, title: 'Gym Energy', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+  { id: 3, title: 'Deep Focus', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+  { id: 4, title: 'Cardio Rhythm', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
+  { id: 5, title: 'Power Lift', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' },
+  { id: 6, title: 'Cool Down', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
+  { id: 7, title: 'Endurance', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' }
 ];
 
 export default function MusicPlayer() {

@@ -30,11 +30,10 @@ export default function WorkoutExecution() {
   useEffect(() => {
     if (current) {
       setTimeLeft(current.exercise.durationSeconds);
-      if (voiceEnabled) {
-        speak(`Up next: ${current.exercise.name}. ${current.exercise.description}. Ready, go!`);
-      }
+      setIsActive(false); // Pause timer initially
+      speak(`Up next: ${current.exercise.name}. ${current.exercise.description}. Ready, go!`);
     }
-  }, [exerciseIndex, current]);
+  }, [exerciseIndex, current, voiceEnabled]);
 
   useEffect(() => {
     if (isActive && timeLeft > 0) {
@@ -50,9 +49,18 @@ export default function WorkoutExecution() {
   }, [isActive, timeLeft]);
 
   const speak = (text: string) => {
-    if ('speechSynthesis' in window && voiceEnabled) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(utterance);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      if (voiceEnabled) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.onend = () => {
+          setIsActive(true); // Auto-start timer when done speaking
+        };
+        window.speechSynthesis.speak(utterance);
+      } else {
+        // If voice is disabled, just auto-start after a brief delay
+        setTimeout(() => setIsActive(true), 1500);
+      }
     }
   };
 
