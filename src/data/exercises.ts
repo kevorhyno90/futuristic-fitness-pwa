@@ -37,7 +37,12 @@ export const allExercises: Exercise[] = [
   { id: 'e13', name: 'Half Kneeling Hip Flexor Stretch', description: 'Kneel on one knee, push hips forward gently.', durationSeconds: 15, imageUrl: '/exercises/Half-Kneeling-Hip-Flexor-Stretch.gif', muscles: ['quadriceps'] },
   { id: 'e14', name: 'Inner Thigh Side Stretch', description: 'Lunge to the side, keeping one leg straight.', durationSeconds: 15, imageUrl: '/exercises/Inner-Thigh-Side-Stretch.gif', muscles: ['quadriceps'] },
   { id: 'e15', name: 'Standing Cross Leg Hamstring Stretch', description: 'Cross one leg over the other and reach for your toes.', durationSeconds: 15, imageUrl: '/exercises/Standing-Cross-Leg-Hamstring-Stretch.gif', muscles: ['hamstring'] },
-  { id: 'e16', name: 'Standing Quadriceps Stretch', description: 'Pull one foot up behind you towards your glutes.', durationSeconds: 15, imageUrl: '/exercises/Standing-Quadriceps-Stretch.gif', muscles: ['quadriceps'] }
+  { id: 'e16', name: 'Standing Quadriceps Stretch', description: 'Pull one foot up behind you towards your glutes.', durationSeconds: 15, imageUrl: '/exercises/Standing-Quadriceps-Stretch.gif', muscles: ['quadriceps'] },
+  { id: 'e17', name: 'Mountain Climber', description: 'Bring knees to chest alternately in a plank position.', durationSeconds: 20, imageUrl: '/exercises/Mountain-Climber.gif', muscles: ['abs', 'quadriceps', 'shoulders'] },
+  { id: 'e18', name: 'Crunches', description: 'Lie on your back and lift your shoulders off the floor.', durationSeconds: 20, imageUrl: '/exercises/Crunches.gif', muscles: ['abs'] },
+  { id: 'e19', name: 'Heel Touch', description: 'Lie on back, knees bent, and reach alternately for your heels.', durationSeconds: 20, imageUrl: '/exercises/Alternate-Heel-Touchers.gif', muscles: ['obliques', 'abs'] },
+  { id: 'e20', name: 'Flutter Kick', description: 'Lie on back and flutter straight legs up and down.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] },
+  { id: 'rest', name: 'Rest', description: 'Take a quick breather to recover.', durationSeconds: 10, imageUrl: '/exercises/Rest.png', muscles: [] }
 ];
 
 const generateDays = (duration: number, baseCal: number): WorkoutDay[] => {
@@ -141,6 +146,37 @@ export const singleWorkouts = [
       { name: 'Inner Thigh Side Stretch', durationSeconds: 15, id: 'stretch-2' },
       { name: 'Standing Cross Leg Hamstring Stretch', durationSeconds: 15, id: 'stretch-3' },
       { name: 'Standing Quadriceps Stretch', durationSeconds: 15, id: 'stretch-4' }
+    ]
+  },
+  {
+    id: '5-min-abs',
+    title: '5 Min Total Abs Workout',
+    description: 'Workout / At Home, Body Weight, Core/Abs, Fat Burning / Beginners',
+    caloriesBurned: 50,
+    exercises: [
+      { name: 'Flutter Kick', durationSeconds: 20, id: 'abs-1-set1' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-1' },
+      { name: 'Flutter Kick', durationSeconds: 20, id: 'abs-1-set2' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-2' },
+      
+      { name: 'Mountain Climber', durationSeconds: 20, id: 'abs-2-set1' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-3' },
+      { name: 'Mountain Climber', durationSeconds: 20, id: 'abs-2-set2' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-4' },
+      
+      { name: 'Crunches', durationSeconds: 20, id: 'abs-3-set1' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-5' },
+      { name: 'Crunches', durationSeconds: 20, id: 'abs-3-set2' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-6' },
+      
+      { name: 'Bicycle Crunches', durationSeconds: 20, id: 'abs-4-set1' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-7' },
+      { name: 'Bicycle Crunches', durationSeconds: 20, id: 'abs-4-set2' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-8' },
+      
+      { name: 'Heel Touch', durationSeconds: 20, id: 'abs-5-set1' },
+      { name: 'Rest', durationSeconds: 10, id: 'rest-9' },
+      { name: 'Heel Touch', durationSeconds: 20, id: 'abs-5-set2' }
     ]
   }
 ];
