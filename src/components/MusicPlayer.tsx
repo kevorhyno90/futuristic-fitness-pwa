@@ -3,8 +3,8 @@ import { Play, Pause, SkipForward, SkipBack, Music } from 'lucide-react';
 import './MusicPlayer.css';
 
 const TRACKS = [
-  { id: 1, title: 'Electronic Pulse', url: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b827e8a9.mp3?filename=electronic-future-beats-117997.mp3' },
-  { id: 2, title: 'Gym Energy', url: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=workout-motivation-114972.mp3' }
+  { id: 1, title: 'Electronic Pulse', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+  { id: 2, title: 'Gym Energy', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' }
 ];
 
 export default function MusicPlayer() {
