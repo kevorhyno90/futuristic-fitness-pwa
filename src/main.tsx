@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
+import { initConsoleHelper } from './utils/consoleHelper';
+
+initConsoleHelper();
+
 // Capture beforeinstallprompt early to prevent race conditions
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();

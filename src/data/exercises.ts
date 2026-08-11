@@ -22,6 +22,10 @@ export interface ThirtyDayPlan {
 }
 
 export const allExercises: Exercise[] = [
+  { id: 'rest-0', name: 'Rest', description: 'Take a breather.', durationSeconds: 10, imageUrl: '/exercises/rest.gif', muscles: [] },
+  { id: 'e22', name: 'Skater Jumps', description: 'Leap from side to side, landing on one foot.', durationSeconds: 20, imageUrl: '/exercises/Jumping-jack.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
+  { id: 'e23', name: 'Hindu Push-ups', description: 'Swoop down and up in a fluid push-up motion.', durationSeconds: 20, imageUrl: '/exercises/Push-up.gif', muscles: ['chest', 'shoulders', 'triceps'] },
+  { id: 'e24', name: 'Jump Squats', description: 'Squat down and explode upwards.', durationSeconds: 20, imageUrl: '/exercises/Squat.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
   { id: 'e1', name: 'Jumping Jacks', description: 'Start with feet together and hands by your sides, then jump while raising arms and separating legs.', durationSeconds: 20, imageUrl: '/exercises/Jumping-jack.gif', muscles: ['calves', 'quadriceps', 'gluteal', 'abs'] },
   { id: 'e2', name: 'High Knees', description: 'Run in place while pulling your knees as high as possible.', durationSeconds: 20, imageUrl: '/exercises/High-Knee-Run.gif', muscles: ['quadriceps', 'hamstring', 'calves', 'abs'] },
   { id: 'e3', name: 'Russian Twist', description: 'Sit on the floor with knees bent, lean back slightly, and twist from side to side.', durationSeconds: 20, imageUrl: '/exercises/Russian-Twist.gif', muscles: ['obliques', 'abs'] },
@@ -175,6 +179,66 @@ export const singleWorkouts = [
       { name: 'Heel Touch', durationSeconds: 20, id: 'abs-5-set1' },
       { name: 'Rest', durationSeconds: 10, id: 'rest-9' },
       { name: 'Heel Touch', durationSeconds: 20, id: 'abs-5-set2' }
+    ]
+  },
+  {
+    id: 'tabata-advanced',
+    title: '20-Min Advanced Tabata',
+    description: 'Fast Fat Loss Tabata Workout. 2 Rounds.',
+    caloriesBurned: 400,
+    imageUrl: '/workouts/hiit.png',
+    exercises: [
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-1' },
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-2' },
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-3' },
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-4' },
+      
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-1' },
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-2' },
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-3' },
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-4' },
+      
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-1' },
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-2' },
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-3' },
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-4' },
+      
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-1' },
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-2' },
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-3' },
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-4' },
+      
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-1' },
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-2' },
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-3' },
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-4' },
+
+      { name: 'Rest', durationSeconds: 60, id: 't-rest-mid' },
+
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-5' },
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-6' },
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-7' },
+      { name: 'High Knee Skips', durationSeconds: 20, id: 't1-8' },
+      
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-5' },
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-6' },
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-7' },
+      { name: 'Skater Jumps', durationSeconds: 20, id: 't2-8' },
+      
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-5' },
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-6' },
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-7' },
+      { name: 'Hindu Push-ups', durationSeconds: 20, id: 't3-8' },
+      
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-5' },
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-6' },
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-7' },
+      { name: 'Mountain Climbers', durationSeconds: 20, id: 't4-8' },
+      
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-5' },
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-6' },
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-7' },
+      { name: 'Jump Squats', durationSeconds: 20, id: 't5-8' }
     ]
   }
 ];
