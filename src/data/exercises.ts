@@ -147,9 +147,17 @@ export const singleWorkouts = [
       { name: 'Fast Feet Run', durationSeconds: 30, id: 'fast-feet-2' },
       { name: 'High Knee Skips', durationSeconds: 30, id: 'high-knee-skips-2' },
       { name: 'Running', durationSeconds: 45, id: 'run-1' },
-      { name: 'Walking', durationSeconds: 180, id: 'rest-walk' },
+      { name: 'Walking', durationSeconds: 180, id: 'rest-walk-1' },
       { name: 'Running', durationSeconds: 45, id: 'run-2' },
-      { name: 'Walking', durationSeconds: 180, id: 'cool-down-walk' }
+      { name: 'Walking', durationSeconds: 180, id: 'rest-walk-2' },
+      { name: 'Running', durationSeconds: 45, id: 'run-3' },
+      { name: 'Walking', durationSeconds: 180, id: 'rest-walk-3' },
+      { name: 'Running', durationSeconds: 45, id: 'run-4' },
+      { name: 'Walking', durationSeconds: 180, id: 'rest-walk-4' },
+      { name: 'Half Kneeling Hip Flexor Stretch', durationSeconds: 15, id: 'stretch-1' },
+      { name: 'Inner Thigh Side Stretch', durationSeconds: 15, id: 'stretch-2' },
+      { name: 'Standing Cross Leg Hamstring Stretch', durationSeconds: 15, id: 'stretch-3' },
+      { name: 'Standing Quadriceps Stretch', durationSeconds: 15, id: 'stretch-4' }
     ]
   },
   {
