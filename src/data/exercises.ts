@@ -21,13 +21,13 @@ export interface ThirtyDayPlan {
 }
 
 const generateExercises = (duration: number): Exercise[] => [
-  { id: 'e1', name: 'Jumping Jacks', description: 'Start with feet together and hands by your sides, then jump while raising arms and separating legs.', durationSeconds: duration, imageUrl: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Jumping-jacks.gif' },
-  { id: 'e2', name: 'High Knees', description: 'Run in place while pulling your knees as high as possible.', durationSeconds: duration, imageUrl: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/High-Knee-Run.gif' },
-  { id: 'e3', name: 'Russian Twist', description: 'Sit on the floor with knees bent, lean back slightly, and twist from side to side.', durationSeconds: duration, imageUrl: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Russian-Twist.gif' },
-  { id: 'e4', name: 'Bicycle Crunches', description: 'Lie on your back, bring knees to chest, and alternate touching elbows to opposite knees.', durationSeconds: duration, imageUrl: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Bicycle-Crunch.gif' },
-  { id: 'e5', name: 'Sit-ups', description: 'Lie on your back, bend knees, and lift your upper body towards your knees.', durationSeconds: duration, imageUrl: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Sit-up.gif' },
-  { id: 'e6', name: 'Scissors', description: 'Lie on your back and flutter your legs up and down without touching the floor.', durationSeconds: duration, imageUrl: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Flutter-Kicks.gif' },
-  { id: 'e7', name: 'Crunch Kicks', description: 'Perform a crunch while kicking your legs forward simultaneously.', durationSeconds: duration, imageUrl: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Crunch-Kicks.gif' }
+  { id: 'e1', name: 'Jumping Jacks', description: 'Start with feet together and hands by your sides, then jump while raising arms and separating legs.', durationSeconds: duration, imageUrl: 'https://media.giphy.com/media/l41YkxvU8c7J7Bba0/giphy.gif' },
+  { id: 'e2', name: 'High Knees', description: 'Run in place while pulling your knees as high as possible.', durationSeconds: duration, imageUrl: 'https://media.giphy.com/media/l3vR5NTEO2VdF6nC0/giphy.gif' },
+  { id: 'e3', name: 'Russian Twist', description: 'Sit on the floor with knees bent, lean back slightly, and twist from side to side.', durationSeconds: duration, imageUrl: 'https://media.giphy.com/media/3o7TqvjC96yP5Wk72U/giphy.gif' },
+  { id: 'e4', name: 'Bicycle Crunches', description: 'Lie on your back, bring knees to chest, and alternate touching elbows to opposite knees.', durationSeconds: duration, imageUrl: 'https://media.giphy.com/media/3o7TKWpu2R3wD9Ew2k/giphy.gif' },
+  { id: 'e5', name: 'Sit-ups', description: 'Lie on your back, bend knees, and lift your upper body towards your knees.', durationSeconds: duration, imageUrl: 'https://media.giphy.com/media/3o7TKTvD2m6D8qO9dC/giphy.gif' },
+  { id: 'e6', name: 'Scissors', description: 'Lie on your back and flutter your legs up and down without touching the floor.', durationSeconds: duration, imageUrl: 'https://media.giphy.com/media/l0HlNaQ6gWfllcjDO/giphy.gif' },
+  { id: 'e7', name: 'Crunch Kicks', description: 'Perform a crunch while kicking your legs forward simultaneously.', durationSeconds: duration, imageUrl: 'https://media.giphy.com/media/26FPsI1mNnx9ZJ2fK/giphy.gif' }
 ];
 
 const generateDays = (duration: number, baseCal: number): WorkoutDay[] => {
