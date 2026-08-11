@@ -69,7 +69,12 @@ export default function WorkoutExecution() {
         
         if (idx < dayPlan.exercises.length - 1 || r < customRounds - 1) {
            const nextEx = idx < dayPlan.exercises.length - 1 ? dayPlan.exercises[idx + 1] : dayPlan.exercises[0];
-           newQueue.push({ type: 'rest', nextExerciseName: nextEx.name, duration: 10 });
+           const isCurrentRest = ex.name.toLowerCase() === 'rest' || ex.name.toLowerCase() === 'walking';
+           const isNextRest = nextEx.name.toLowerCase() === 'rest' || nextEx.name.toLowerCase() === 'walking';
+           
+           if (!isCurrentRest && !isNextRest) {
+             newQueue.push({ type: 'rest', nextExerciseName: nextEx.name, duration: 10 });
+           }
         }
       });
     }
