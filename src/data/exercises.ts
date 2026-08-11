@@ -22,10 +22,10 @@ export interface ThirtyDayPlan {
 }
 
 export const allExercises: Exercise[] = [
-  { id: 'rest-0', name: 'Rest', description: 'Take a breather.', durationSeconds: 10, imageUrl: '/exercises/rest.gif', muscles: [] },
-  { id: 'e22', name: 'Skater Jumps', description: 'Leap from side to side, landing on one foot.', durationSeconds: 20, imageUrl: '/exercises/Jumping-jack.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
-  { id: 'e23', name: 'Hindu Push-ups', description: 'Swoop down and up in a fluid push-up motion.', durationSeconds: 20, imageUrl: '/exercises/Push-up.gif', muscles: ['chest', 'front-deltoids', 'triceps'] },
-  { id: 'e24', name: 'Jump Squats', description: 'Squat down and explode upwards.', durationSeconds: 20, imageUrl: '/exercises/Squat.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
+  { id: 'rest-0', name: 'Rest', description: 'Take a breather.', durationSeconds: 10, imageUrl: '/exercises/Rest.png', muscles: [] },
+  { id: 'e22', name: 'Skater Jumps', description: 'Leap from side to side, landing on one foot.', durationSeconds: 20, imageUrl: '/exercises/Fast-Feet-Run.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
+  { id: 'e23', name: 'Hindu Push-ups', description: 'Swoop down and up in a fluid push-up motion.', durationSeconds: 20, imageUrl: '/exercises/Mountain-Climber.gif', muscles: ['chest', 'front-deltoids', 'triceps'] },
+  { id: 'e24', name: 'Jump Squats', description: 'Squat down and explode upwards.', durationSeconds: 20, imageUrl: '/exercises/High-Knee-Run.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
   { id: 'e1', name: 'Jumping Jacks', description: 'Start with feet together and hands by your sides, then jump while raising arms and separating legs.', durationSeconds: 20, imageUrl: '/exercises/Jumping-jack.gif', muscles: ['calves', 'quadriceps', 'gluteal', 'abs'] },
   { id: 'e2', name: 'High Knees', description: 'Run in place while pulling your knees as high as possible.', durationSeconds: 20, imageUrl: '/exercises/High-Knee-Run.gif', muscles: ['quadriceps', 'hamstring', 'calves', 'abs'] },
   { id: 'e3', name: 'Russian Twist', description: 'Sit on the floor with knees bent, lean back slightly, and twist from side to side.', durationSeconds: 20, imageUrl: '/exercises/Russian-Twist.gif', muscles: ['obliques', 'abs'] },
