@@ -152,11 +152,20 @@ export default function WorkoutExecution() {
           </div>
         ) : (
           <>
-            {current.exercise.imageUrl && (
-              <div className="image-wrapper">
-                 <img src={current.exercise.imageUrl} alt={current.exercise.name} className="exercise-image" />
+            <div className="coach-assistant">
+              <div className="coach-header">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Devin&backgroundColor=10b981" alt="Devin's Coach" className="coach-avatar" />
+                <div className="coach-info">
+                  <h3 className="coach-name">Devin's Coach</h3>
+                  <p className="coach-message">Watch my form and follow along!</p>
+                </div>
               </div>
-            )}
+              {current.exercise.imageUrl && (
+                <div className="image-wrapper">
+                   <img src={current.exercise.imageUrl} alt={current.exercise.name} className="exercise-image" />
+                </div>
+              )}
+            </div>
             <h2 className="exercise-title">{current.exercise.name}</h2>
             <p className="exercise-description">{current.exercise.description}</p>
           </>
