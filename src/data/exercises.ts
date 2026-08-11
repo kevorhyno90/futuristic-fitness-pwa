@@ -38,7 +38,7 @@ export const allExercises: Exercise[] = [
   { id: 'e14', name: 'Inner Thigh Side Stretch', description: 'Lunge to the side, keeping one leg straight.', durationSeconds: 15, imageUrl: '/exercises/Inner-Thigh-Side-Stretch.gif', muscles: ['quadriceps'] },
   { id: 'e15', name: 'Standing Cross Leg Hamstring Stretch', description: 'Cross one leg over the other and reach for your toes.', durationSeconds: 15, imageUrl: '/exercises/Standing-Cross-Leg-Hamstring-Stretch.gif', muscles: ['hamstring'] },
   { id: 'e16', name: 'Standing Quadriceps Stretch', description: 'Pull one foot up behind you towards your glutes.', durationSeconds: 15, imageUrl: '/exercises/Standing-Quadriceps-Stretch.gif', muscles: ['quadriceps'] },
-  { id: 'e17', name: 'Mountain Climber', description: 'Bring knees to chest alternately in a plank position.', durationSeconds: 20, imageUrl: '/exercises/Mountain-Climber.gif', muscles: ['abs', 'quadriceps', 'shoulders'] },
+  { id: 'e17', name: 'Mountain Climber', description: 'Bring knees to chest alternately in a plank position.', durationSeconds: 20, imageUrl: '/exercises/Mountain-Climber.gif', muscles: ['abs', 'quadriceps', 'front-deltoids'] },
   { id: 'e18', name: 'Crunches', description: 'Lie on your back and lift your shoulders off the floor.', durationSeconds: 20, imageUrl: '/exercises/Crunches.gif', muscles: ['abs'] },
   { id: 'e19', name: 'Heel Touch', description: 'Lie on back, knees bent, and reach alternately for your heels.', durationSeconds: 20, imageUrl: '/exercises/Alternate-Heel-Touchers.gif', muscles: ['obliques', 'abs'] },
   { id: 'e20', name: 'Flutter Kick', description: 'Lie on back and flutter straight legs up and down.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] },
