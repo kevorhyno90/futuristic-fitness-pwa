@@ -29,8 +29,7 @@ export default function Workouts() {
   };
 
   const isDayLocked = (dayNumber: number) => {
-    if (dayNumber === 1) return false;
-    return !completedDays.some(d => d.dayNumber === dayNumber - 1);
+    return false;
   };
 
   const handleDayClick = (dayNumber: number, isRestDay: boolean) => {
