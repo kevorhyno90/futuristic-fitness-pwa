@@ -125,12 +125,7 @@ export default function WorkoutExecution() {
     }
   };
 
-  const handlePrevious = () => {
-    if (queueIndex > 0) {
-      setQueueIndex(queueIndex - 1);
-    }
-  };
-  
+
   const finishDay = async () => {
     setWorkoutStatus('finished');
     setIsActive(false);
