@@ -25,7 +25,7 @@ export default function InstallButton() {
     
     deferredPrompt.prompt();
     
-    const { outcome } = await deferredPrompt.userChoice;
+    await deferredPrompt.userChoice;
     
     setDeferredPrompt(null);
     setIsVisible(false);
