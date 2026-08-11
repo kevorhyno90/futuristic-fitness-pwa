@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { workoutPlans } from '../data/exercises';
-import { getCompletedDays, CompletedDayRecord } from '../data/db';
+import { getCompletedDays } from '../data/db';
+import type { CompletedDayRecord } from '../data/db';
 import { CheckCircle, Lock, ArrowLeft } from 'lucide-react';
 import './Workouts.css';
 
