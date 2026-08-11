@@ -158,6 +158,16 @@ export default function WorkoutExecution() {
               </div>
             )}
             <h2 className="exercise-title">{current.exercise.name}</h2>
+            {current.exercise.muscles && (
+              <div className="exercise-muscles">
+                <span className="muscle-label">Muscles Worked:</span>
+                <div className="muscle-tags">
+                  {current.exercise.muscles.map(m => (
+                    <span key={m} className="muscle-tag">{m}</span>
+                  ))}
+                </div>
+              </div>
+            )}
             <p className="exercise-description">{current.exercise.description}</p>
           </>
         )}
