@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
-import { getWeightHistory, saveWeight, WeightRecord } from '../data/db';
+import { getWeightHistory, saveWeight } from '../data/db';
+import type { WeightRecord } from '../data/db';
 import './Analytics.css';
 
 export default function Analytics() {

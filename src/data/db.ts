@@ -1,4 +1,4 @@
-import { get, set, update } from 'idb-keyval';
+import { get, update } from 'idb-keyval';
 
 export interface WeightRecord {
   date: string;

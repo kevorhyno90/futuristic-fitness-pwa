@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Play, Pause, SkipForward, CheckCircle, Volume2, VolumeX } from 'lucide-react';
-import { sampleWorkouts, Exercise } from '../data/exercises';
+import { sampleWorkouts } from '../data/exercises';
+import type { Exercise } from '../data/exercises';
 import './WorkoutExecution.css';
 
 export default function WorkoutExecution() {
