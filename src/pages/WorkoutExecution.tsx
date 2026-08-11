@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Play, Pause, SkipForward, CheckCircle } from 'lucide-react';
 import Model from 'react-body-highlighter';
-import { workoutPlans } from '../data/exercises';
-import type { Exercise } from '../data/exercises';
+import { workoutPlans, singleWorkouts } from '../data/exercises';
+import type { Exercise, WorkoutDay } from '../data/exercises';
 import { saveCompletedDay } from '../data/db';
 import './WorkoutExecution.css';
 
@@ -33,8 +33,16 @@ export default function WorkoutExecution() {
   const navigate = useNavigate();
   const dayNumber = parseInt(dayNumberStr || '1', 10);
   
-  const plan = workoutPlans.find(p => p.id === planId);
-  const dayPlan = plan?.days.find(d => d.dayNumber === dayNumber);
+  let dayPlan: WorkoutDay | undefined;
+  if (planId === 'single') {
+    const sw = singleWorkouts.find(w => w.id === dayNumberStr);
+    if (sw) {
+      dayPlan = { dayNumber: 1, isRestDay: false, exercises: sw.exercises, caloriesBurned: sw.caloriesBurned };
+    }
+  } else {
+    const plan = workoutPlans.find(p => p.id === planId);
+    dayPlan = plan?.days.find(d => d.dayNumber === dayNumber);
+  }
   
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [queueIndex, setQueueIndex] = useState(0);

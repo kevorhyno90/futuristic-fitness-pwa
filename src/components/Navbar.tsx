@@ -19,8 +19,23 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard" className={`nav-link ${location.pathname.startsWith('/dashboard') || location.pathname.startsWith('/workouts') ? 'active' : ''}`}>
-              Workouts
+            <Link to="/calculators" className={`nav-link ${location.pathname.startsWith('/calculators') ? 'active' : ''}`}>
+              Calculators
+            </Link>
+          </li>
+          <li>
+            <Link to="/exercises" className={`nav-link ${location.pathname.startsWith('/exercises') ? 'active' : ''}`}>
+              Exercises
+            </Link>
+          </li>
+          <li>
+            <Link to="/single-workouts" className={`nav-link ${location.pathname.startsWith('/single-workouts') ? 'active' : ''}`}>
+              Single Workouts
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard" className={`nav-link ${location.pathname.startsWith('/dashboard') || location.pathname.startsWith('/workouts') || location.pathname.startsWith('/workout/') ? 'active' : ''}`}>
+              Workout Plans
             </Link>
           </li>
         </ul>

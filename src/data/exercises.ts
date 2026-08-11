@@ -21,19 +21,19 @@ export interface ThirtyDayPlan {
   days: WorkoutDay[];
 }
 
-const generateExercises = (duration: number): Exercise[] => [
-  { id: 'e1', name: 'Jumping Jacks', description: 'Start with feet together and hands by your sides, then jump while raising arms and separating legs.', durationSeconds: duration, imageUrl: '/exercises/Jumping-jack.gif', muscles: ['calves', 'quadriceps', 'gluteal', 'abs'] },
-  { id: 'e2', name: 'High Knees', description: 'Run in place while pulling your knees as high as possible.', durationSeconds: duration, imageUrl: '/exercises/High-Knee-Run.gif', muscles: ['quadriceps', 'hamstring', 'calves', 'abs'] },
-  { id: 'e3', name: 'Russian Twist', description: 'Sit on the floor with knees bent, lean back slightly, and twist from side to side.', durationSeconds: duration, imageUrl: '/exercises/Russian-Twist.gif', muscles: ['obliques', 'abs'] },
-  { id: 'e4', name: 'Bicycle Crunches', description: 'Lie on your back, bring knees to chest, and alternate touching elbows to opposite knees.', durationSeconds: duration, imageUrl: '/exercises/Bicycle-Crunch.gif', muscles: ['abs', 'obliques'] },
-  { id: 'e5', name: 'Sit-ups', description: 'Lie on your back, bend knees, and lift your upper body towards your knees.', durationSeconds: duration, imageUrl: '/exercises/Sit-ups.gif', muscles: ['abs'] },
-  { id: 'e6', name: 'Scissors', description: 'Lie on your back and flutter your legs up and down without touching the floor.', durationSeconds: duration, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] },
-  { id: 'e7', name: 'Crunch Kicks', description: 'Perform a crunch while kicking your legs forward simultaneously.', durationSeconds: duration, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] }
+export const allExercises: Exercise[] = [
+  { id: 'e1', name: 'Jumping Jacks', description: 'Start with feet together and hands by your sides, then jump while raising arms and separating legs.', durationSeconds: 20, imageUrl: '/exercises/Jumping-jack.gif', muscles: ['calves', 'quadriceps', 'gluteal', 'abs'] },
+  { id: 'e2', name: 'High Knees', description: 'Run in place while pulling your knees as high as possible.', durationSeconds: 20, imageUrl: '/exercises/High-Knee-Run.gif', muscles: ['quadriceps', 'hamstring', 'calves', 'abs'] },
+  { id: 'e3', name: 'Russian Twist', description: 'Sit on the floor with knees bent, lean back slightly, and twist from side to side.', durationSeconds: 20, imageUrl: '/exercises/Russian-Twist.gif', muscles: ['obliques', 'abs'] },
+  { id: 'e4', name: 'Bicycle Crunches', description: 'Lie on your back, bring knees to chest, and alternate touching elbows to opposite knees.', durationSeconds: 20, imageUrl: '/exercises/Bicycle-Crunch.gif', muscles: ['abs', 'obliques'] },
+  { id: 'e5', name: 'Sit-ups', description: 'Lie on your back, bend knees, and lift your upper body towards your knees.', durationSeconds: 20, imageUrl: '/exercises/Sit-ups.gif', muscles: ['abs'] },
+  { id: 'e6', name: 'Scissors', description: 'Lie on your back and flutter your legs up and down without touching the floor.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] },
+  { id: 'e7', name: 'Crunch Kicks', description: 'Perform a crunch while kicking your legs forward simultaneously.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] }
 ];
 
 const generateDays = (duration: number, baseCal: number): WorkoutDay[] => {
   const days: WorkoutDay[] = [];
-  const baseExercises = generateExercises(duration);
+  const baseExercises = allExercises.map(ex => ({ ...ex, durationSeconds: duration }));
   
   for (let i = 1; i <= 30; i++) {
     const isRestDay = i % 4 === 0; // Every 4th day is a rest day
@@ -71,5 +71,43 @@ export const workoutPlans: ThirtyDayPlan[] = [
     title: 'Incredible',
     description: 'The ultimate 30-day challenge. Only for the brave.',
     days: generateDays(40, 350)
+  }
+];
+
+export const singleWorkouts = [
+  {
+    id: 'full-body',
+    title: 'Full Body Burner',
+    description: 'A quick 15-minute full body routine.',
+    caloriesBurned: 150,
+    exercises: [
+      { name: 'Jumping Jacks', durationSeconds: 45, id: 'jumping-jack' },
+      { name: 'Push-ups', durationSeconds: 45, id: 'push-up' },
+      { name: 'Squats', durationSeconds: 45, id: 'squat' },
+      { name: 'Plank', durationSeconds: 60, id: 'plank' }
+    ]
+  },
+  {
+    id: 'core',
+    title: 'Core Crusher',
+    description: 'Target your abs and obliques in 10 minutes.',
+    caloriesBurned: 100,
+    exercises: [
+      { name: 'Crunches', durationSeconds: 45, id: 'crunch' },
+      { name: 'Leg Raises', durationSeconds: 45, id: 'leg-raise' },
+      { name: 'Plank', durationSeconds: 60, id: 'plank' }
+    ]
+  },
+  {
+    id: 'hiit',
+    title: 'HIIT Cardio',
+    description: 'High Intensity Interval Training to get your heart rate up.',
+    caloriesBurned: 200,
+    exercises: [
+      { name: 'High Knees', durationSeconds: 30, id: 'high-knee' },
+      { name: 'Burpees', durationSeconds: 30, id: 'burpee' },
+      { name: 'Jumping Jacks', durationSeconds: 30, id: 'jumping-jack' },
+      { name: 'Mountain Climbers', durationSeconds: 30, id: 'mountain-climber' }
+    ]
   }
 ];

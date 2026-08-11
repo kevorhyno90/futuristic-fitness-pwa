@@ -8,6 +8,9 @@ import Analytics from './pages/Analytics';
 import AiAssistant from './pages/AiAssistant';
 import MusicPlayer from './components/MusicPlayer';
 import InstallButton from './components/InstallButton';
+import Calculators from './pages/Calculators';
+import Exercises from './pages/Exercises';
+import SingleWorkouts from './pages/SingleWorkouts';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
       <div className="app-container" style={{ padding: '2rem' }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/calculators" element={<Calculators />} />
+          <Route path="/exercises" element={<Exercises />} />
+          <Route path="/single-workouts" element={<SingleWorkouts />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/workouts/:planId" element={<Workouts />} />
           <Route path="/workout/:planId/:dayNumber" element={<WorkoutExecution />} />
