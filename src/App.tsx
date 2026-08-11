@@ -28,7 +28,6 @@ function App() {
           <Route path="/ai" element={<AiAssistant />} />
         </Routes>
       </div>
-      <MusicPlayer />
       <InstallButton />
     </Router>
   );
