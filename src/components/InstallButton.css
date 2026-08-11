@@ -1,0 +1,63 @@
+.install-banner {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 1rem 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  animation: slideDown 0.5s ease forwards;
+}
+
+.install-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.install-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.install-text strong {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.install-text span {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+@keyframes slideDown {
+  from {
+    top: -5rem;
+    opacity: 0;
+  }
+  to {
+    top: 1rem;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .install-banner {
+    bottom: 5rem;
+    top: auto;
+    animation: slideUp 0.5s ease forwards;
+  }
+  
+  @keyframes slideUp {
+    from {
+      bottom: -5rem;
+      opacity: 0;
+    }
+    to {
+      bottom: 5rem;
+      opacity: 1;
+    }
+  }
+}

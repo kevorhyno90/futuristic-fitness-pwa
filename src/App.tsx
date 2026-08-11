@@ -7,6 +7,7 @@ import WorkoutExecution from './pages/WorkoutExecution';
 import Analytics from './pages/Analytics';
 import AiAssistant from './pages/AiAssistant';
 import MusicPlayer from './components/MusicPlayer';
+import InstallButton from './components/InstallButton';
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
@@ -34,6 +35,7 @@ function App() {
           </Routes>
         </main>
         <MusicPlayer />
+        <InstallButton />
       </div>
     </Router>
   );
