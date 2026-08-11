@@ -228,13 +228,13 @@ export default function WorkoutExecution() {
                 <span className="muscle-label">Targeted Muscles</span>
                 <div className="models-container">
                   <Model
-                    data={current.exercise.muscles.map(m => ({ name: m, exercises: [current.exercise.name] }))}
+                    data={[{ name: current.exercise.name, muscles: current.exercise.muscles as any }]}
                     style={{ width: '8rem', height: '12rem' }}
                     highlightedColors={['#ef4444', '#ef4444']}
                     type="anterior"
                   />
                   <Model
-                    data={current.exercise.muscles.map(m => ({ name: m, exercises: [current.exercise.name] }))}
+                    data={[{ name: current.exercise.name, muscles: current.exercise.muscles as any }]}
                     style={{ width: '8rem', height: '12rem' }}
                     highlightedColors={['#ef4444', '#ef4444']}
                     type="posterior"

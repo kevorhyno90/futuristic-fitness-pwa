@@ -36,7 +36,7 @@ export default function Exercises() {
               <img src={ex.imageUrl || `/exercises/${ex.id}.gif`} alt={ex.name} style={{ width: '50%', objectFit: 'contain' }} />
               <div style={{ width: '45%', display: 'flex', justifyContent: 'center' }}>
                 <Model
-                  data={ex.muscles ? ex.muscles.map(m => ({ name: m, exercises: [ex.name] })) : []}
+                  data={[{ name: ex.name, muscles: (ex.muscles || []) as any }]}
                   style={{ width: '8rem', height: '12rem' }}
                   highlightedColors={['#ef4444', '#ef4444']}
                   type="anterior"
