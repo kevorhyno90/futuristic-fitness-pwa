@@ -6,7 +6,6 @@ import Workouts from './pages/Workouts';
 import WorkoutExecution from './pages/WorkoutExecution';
 import Analytics from './pages/Analytics';
 import AiAssistant from './pages/AiAssistant';
-import MusicPlayer from './components/MusicPlayer';
 import InstallButton from './components/InstallButton';
 import Calculators from './pages/Calculators';
 import Exercises from './pages/Exercises';

@@ -94,12 +94,12 @@ export const singleWorkouts = [
     title: 'Full Body Burner',
     description: 'A quick 15-minute full body routine.',
     caloriesBurned: 150,
-    imageUrl: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/workouts/full-body.png',
     exercises: [
       { name: 'Jumping Jacks', durationSeconds: 45, id: 'jumping-jack' },
       { name: 'Push-ups', durationSeconds: 45, id: 'push-up' },
       { name: 'Squats', durationSeconds: 45, id: 'squat' },
-      { name: 'Plank', durationSeconds: 60, id: 'plank' }
+      { name: 'Plank', durationSeconds: 45, id: 'plank' }
     ]
   },
   {
@@ -107,11 +107,11 @@ export const singleWorkouts = [
     title: 'Core Crusher',
     description: 'Target your abs and obliques in 10 minutes.',
     caloriesBurned: 100,
-    imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/workouts/core.png',
     exercises: [
       { name: 'Crunches', durationSeconds: 45, id: 'crunch' },
       { name: 'Leg Raises', durationSeconds: 45, id: 'leg-raise' },
-      { name: 'Plank', durationSeconds: 60, id: 'plank' }
+      { name: 'Russian Twist', durationSeconds: 45, id: 'russian-twist' }
     ]
   },
   {
@@ -119,11 +119,10 @@ export const singleWorkouts = [
     title: 'HIIT Cardio',
     description: 'High Intensity Interval Training to get your heart rate up.',
     caloriesBurned: 200,
-    imageUrl: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/workouts/hiit.png',
     exercises: [
       { name: 'High Knees', durationSeconds: 30, id: 'high-knee' },
       { name: 'Burpees', durationSeconds: 30, id: 'burpee' },
-      { name: 'Jumping Jacks', durationSeconds: 30, id: 'jumping-jack' },
       { name: 'Mountain Climbers', durationSeconds: 30, id: 'mountain-climber' }
     ]
   },
@@ -132,24 +131,18 @@ export const singleWorkouts = [
     title: '200m Interval Running Workout',
     description: 'Interval Running Workout For Speed and Fat Burning. For Beginners.',
     caloriesBurned: 350,
-    imageUrl: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/workouts/interval-running.png',
     exercises: [
       { name: 'Walking', durationSeconds: 300, id: 'walking' },
       { name: 'Briskly Walking', durationSeconds: 180, id: 'brisk-walk' },
-      { name: 'Fast Feet Run', durationSeconds: 30, id: 'fast-feet' },
-      { name: 'High Knee Skips', durationSeconds: 30, id: 'knee-skips' },
-      { name: 'Running', durationSeconds: 45, id: 'run-1' }, // 200m sprint 70%
-      { name: 'Walking', durationSeconds: 120, id: 'walk-1' }, // 2-3 min rest
-      { name: 'Running', durationSeconds: 45, id: 'run-2' }, // 200m sprint 75%
-      { name: 'Walking', durationSeconds: 120, id: 'walk-2' },
-      { name: 'Running', durationSeconds: 40, id: 'run-3' }, // 200m sprint 80%
-      { name: 'Walking', durationSeconds: 120, id: 'walk-3' },
-      { name: 'Running', durationSeconds: 40, id: 'run-4' }, // 200m sprint 80%
-      { name: 'Walking', durationSeconds: 120, id: 'walk-4' },
-      { name: 'Half Kneeling Hip Flexor Stretch', durationSeconds: 15, id: 'stretch-1' },
-      { name: 'Inner Thigh Side Stretch', durationSeconds: 15, id: 'stretch-2' },
-      { name: 'Standing Cross Leg Hamstring Stretch', durationSeconds: 15, id: 'stretch-3' },
-      { name: 'Standing Quadriceps Stretch', durationSeconds: 15, id: 'stretch-4' }
+      { name: 'Fast Feet Run', durationSeconds: 30, id: 'fast-feet-1' },
+      { name: 'High Knee Skips', durationSeconds: 30, id: 'high-knee-skips-1' },
+      { name: 'Fast Feet Run', durationSeconds: 30, id: 'fast-feet-2' },
+      { name: 'High Knee Skips', durationSeconds: 30, id: 'high-knee-skips-2' },
+      { name: 'Running', durationSeconds: 45, id: 'run-1' },
+      { name: 'Walking', durationSeconds: 180, id: 'rest-walk' },
+      { name: 'Running', durationSeconds: 45, id: 'run-2' },
+      { name: 'Walking', durationSeconds: 180, id: 'cool-down-walk' }
     ]
   },
   {
@@ -157,7 +150,7 @@ export const singleWorkouts = [
     title: '5 Min Total Abs Workout',
     description: 'Workout / At Home, Body Weight, Core/Abs, Fat Burning / Beginners',
     caloriesBurned: 50,
-    imageUrl: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/workouts/abs-workout.png',
     exercises: [
       { name: 'Flutter Kick', durationSeconds: 20, id: 'abs-1-set1' },
       { name: 'Rest', durationSeconds: 10, id: 'rest-1' },
