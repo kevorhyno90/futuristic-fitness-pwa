@@ -94,6 +94,7 @@ export const singleWorkouts = [
     title: 'Full Body Burner',
     description: 'A quick 15-minute full body routine.',
     caloriesBurned: 150,
+    imageUrl: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800',
     exercises: [
       { name: 'Jumping Jacks', durationSeconds: 45, id: 'jumping-jack' },
       { name: 'Push-ups', durationSeconds: 45, id: 'push-up' },
@@ -106,6 +107,7 @@ export const singleWorkouts = [
     title: 'Core Crusher',
     description: 'Target your abs and obliques in 10 minutes.',
     caloriesBurned: 100,
+    imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800',
     exercises: [
       { name: 'Crunches', durationSeconds: 45, id: 'crunch' },
       { name: 'Leg Raises', durationSeconds: 45, id: 'leg-raise' },
@@ -117,6 +119,7 @@ export const singleWorkouts = [
     title: 'HIIT Cardio',
     description: 'High Intensity Interval Training to get your heart rate up.',
     caloriesBurned: 200,
+    imageUrl: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&q=80&w=800',
     exercises: [
       { name: 'High Knees', durationSeconds: 30, id: 'high-knee' },
       { name: 'Burpees', durationSeconds: 30, id: 'burpee' },
@@ -129,6 +132,7 @@ export const singleWorkouts = [
     title: '200m Interval Running Workout',
     description: 'Interval Running Workout For Speed and Fat Burning. For Beginners.',
     caloriesBurned: 350,
+    imageUrl: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&q=80&w=800',
     exercises: [
       { name: 'Walking', durationSeconds: 300, id: 'walking' },
       { name: 'Briskly Walking', durationSeconds: 180, id: 'brisk-walk' },
@@ -153,6 +157,7 @@ export const singleWorkouts = [
     title: '5 Min Total Abs Workout',
     description: 'Workout / At Home, Body Weight, Core/Abs, Fat Burning / Beginners',
     caloriesBurned: 50,
+    imageUrl: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=800',
     exercises: [
       { name: 'Flutter Kick', durationSeconds: 20, id: 'abs-1-set1' },
       { name: 'Rest', durationSeconds: 10, id: 'rest-1' },

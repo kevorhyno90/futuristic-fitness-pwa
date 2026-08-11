@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Scale, Dumbbell, Activity, Flame } from 'lucide-react';
 import './Calculators.css';
 
 export default function Calculators() {
@@ -89,7 +90,10 @@ export default function Calculators() {
       <div className="calculators-grid">
         {/* BMI Calculator */}
         <div className="calculator-card">
-          <h2>BMI Calculator</h2>
+          <div className="calc-card-header">
+            <Scale size={24} className="calc-icon" />
+            <h2>BMI Calculator</h2>
+          </div>
           <p className="text-secondary mb-4">Calculate your Body Mass Index.</p>
           <form onSubmit={calculateBMI} className="calc-form">
             <div className="form-group">
@@ -112,7 +116,10 @@ export default function Calculators() {
 
         {/* 1RM Calculator */}
         <div className="calculator-card">
-          <h2>1-Rep Max Calculator</h2>
+          <div className="calc-card-header">
+            <Dumbbell size={24} className="calc-icon" />
+            <h2>1-Rep Max Calculator</h2>
+          </div>
           <p className="text-secondary mb-4">Estimate your 1RM based on your lifts.</p>
           <form onSubmit={calculate1RM} className="calc-form">
             <div className="form-group">
@@ -135,7 +142,10 @@ export default function Calculators() {
 
         {/* Body Fat Index Calculator */}
         <div className="calculator-card">
-          <h2>Body Fat Index</h2>
+          <div className="calc-card-header">
+            <Activity size={24} className="calc-icon" />
+            <h2>Body Fat Index</h2>
+          </div>
           <p className="text-secondary mb-4">Estimate your Body Fat Percentage.</p>
           <form onSubmit={calculateBFI} className="calc-form">
             <div className="form-group">
@@ -169,7 +179,10 @@ export default function Calculators() {
 
         {/* Daily Calorie Calculator (TDEE) */}
         <div className="calculator-card">
-          <h2>Daily Calories (TDEE)</h2>
+          <div className="calc-card-header">
+            <Flame size={24} className="calc-icon" />
+            <h2>Daily Calories (TDEE)</h2>
+          </div>
           <p className="text-secondary mb-4">Calculate daily calories to maintain weight.</p>
           <form onSubmit={calculateTDEE} className="calc-form">
             <div className="form-group">

@@ -13,10 +13,25 @@
   background: var(--bg-secondary);
   border: 1px solid var(--bg-tertiary);
   border-radius: var(--radius-lg);
-  padding: 2rem;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.workout-card-image {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.workout-card-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .card-header {
