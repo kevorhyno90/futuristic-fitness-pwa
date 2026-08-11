@@ -90,6 +90,7 @@ export default function Calculators() {
       <div className="calculators-grid">
         {/* BMI Calculator */}
         <div className="calculator-card">
+          <div className="calc-banner" style={{ backgroundImage: 'url(/calculators/bmi.png)', height: '120px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px 8px 0 0', marginBottom: '1rem' }} />
           <div className="calc-card-header">
             <Scale size={24} className="calc-icon" />
             <h2>BMI Calculator</h2>
@@ -116,6 +117,7 @@ export default function Calculators() {
 
         {/* 1RM Calculator */}
         <div className="calculator-card">
+          <div className="calc-banner" style={{ backgroundImage: 'url(/workouts/full-body.png)', height: '120px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px 8px 0 0', marginBottom: '1rem' }} />
           <div className="calc-card-header">
             <Dumbbell size={24} className="calc-icon" />
             <h2>1-Rep Max Calculator</h2>
@@ -142,6 +144,7 @@ export default function Calculators() {
 
         {/* Body Fat Index Calculator */}
         <div className="calculator-card">
+          <div className="calc-banner" style={{ backgroundImage: 'url(/workouts/core.png)', height: '120px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px 8px 0 0', marginBottom: '1rem' }} />
           <div className="calc-card-header">
             <Activity size={24} className="calc-icon" />
             <h2>Body Fat Index</h2>
@@ -179,6 +182,7 @@ export default function Calculators() {
 
         {/* Daily Calorie Calculator (TDEE) */}
         <div className="calculator-card">
+          <div className="calc-banner" style={{ backgroundImage: 'url(/workouts/hiit.png)', height: '120px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px 8px 0 0', marginBottom: '1rem' }} />
           <div className="calc-card-header">
             <Flame size={24} className="calc-icon" />
             <h2>Daily Calories (TDEE)</h2>

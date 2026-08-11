@@ -3,10 +3,10 @@ import { Dumbbell, Activity, Flame, Trophy } from 'lucide-react';
 import './Dashboard.css';
 
 const planImages = {
-  beginner: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop',
-  advanced: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop',
-  experienced: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop',
-  incredible: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600&auto=format&fit=crop'
+  beginner: '/plans/beginner.png',
+  advanced: '/plans/advanced.png',
+  experienced: '/plans/experienced.png',
+  incredible: '/plans/incredible.png'
 };
 
 export default function Dashboard() {

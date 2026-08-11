@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { allExercises } from '../data/exercises';
+import Model from 'react-body-highlighter';
 import './Exercises.css';
 
 export default function Exercises() {
@@ -31,8 +32,16 @@ export default function Exercises() {
       <div className="exercises-grid">
         {filteredExercises.map(ex => (
           <div key={ex.id} className="exercise-card">
-            <div className="exercise-img-wrapper">
-              <img src={`/exercises/${ex.id}.gif`} alt={ex.name} />
+            <div className="exercise-img-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <img src={ex.imageUrl || `/exercises/${ex.id}.gif`} alt={ex.name} style={{ width: '50%', objectFit: 'contain' }} />
+              <div style={{ width: '45%', display: 'flex', justifyContent: 'center' }}>
+                <Model
+                  data={[{ name: ex.name, muscles: (ex.muscles || []) as any }]}
+                  style={{ width: '8rem', height: '12rem' }}
+                  highlightedColors={['#ef4444', '#ef4444']}
+                  type="anterior"
+                />
+              </div>
             </div>
             <div className="exercise-info">
               <h3>{ex.name}</h3>
