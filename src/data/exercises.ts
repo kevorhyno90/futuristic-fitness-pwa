@@ -28,7 +28,16 @@ export const allExercises: Exercise[] = [
   { id: 'e4', name: 'Bicycle Crunches', description: 'Lie on your back, bring knees to chest, and alternate touching elbows to opposite knees.', durationSeconds: 20, imageUrl: '/exercises/Bicycle-Crunch.gif', muscles: ['abs', 'obliques'] },
   { id: 'e5', name: 'Sit-ups', description: 'Lie on your back, bend knees, and lift your upper body towards your knees.', durationSeconds: 20, imageUrl: '/exercises/Sit-ups.gif', muscles: ['abs'] },
   { id: 'e6', name: 'Scissors', description: 'Lie on your back and flutter your legs up and down without touching the floor.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] },
-  { id: 'e7', name: 'Crunch Kicks', description: 'Perform a crunch while kicking your legs forward simultaneously.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] }
+  { id: 'e7', name: 'Crunch Kicks', description: 'Perform a crunch while kicking your legs forward simultaneously.', durationSeconds: 20, imageUrl: '/exercises/Flutter-Kicks.gif', muscles: ['abs'] },
+  { id: 'e8', name: 'Walking', description: 'Brisk walk to warm up or cool down the muscles.', durationSeconds: 60, imageUrl: '/exercises/Walking.gif', muscles: ['calves', 'quadriceps'] },
+  { id: 'e9', name: 'Briskly Walking', description: 'Walk at a fast pace to elevate heart rate.', durationSeconds: 60, imageUrl: '/exercises/Briskly-Walking.gif', muscles: ['calves', 'quadriceps', 'hamstring'] },
+  { id: 'e10', name: 'Fast Feet Run', description: 'Run in place with very fast, shallow steps.', durationSeconds: 30, imageUrl: '/exercises/Fast-Feet-Run.gif', muscles: ['calves', 'quadriceps'] },
+  { id: 'e11', name: 'High Knee Skips', description: 'Skip forward while driving your knees up to waist height.', durationSeconds: 30, imageUrl: '/exercises/High-Knee-Skips.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
+  { id: 'e12', name: 'Running', description: 'High intensity sprint to maximize speed and fat burn.', durationSeconds: 45, imageUrl: '/exercises/Running.gif', muscles: ['quadriceps', 'hamstring', 'calves', 'gluteal', 'abs'] },
+  { id: 'e13', name: 'Half Kneeling Hip Flexor Stretch', description: 'Kneel on one knee, push hips forward gently.', durationSeconds: 15, imageUrl: '/exercises/Half-Kneeling-Hip-Flexor-Stretch.gif', muscles: ['quadriceps'] },
+  { id: 'e14', name: 'Inner Thigh Side Stretch', description: 'Lunge to the side, keeping one leg straight.', durationSeconds: 15, imageUrl: '/exercises/Inner-Thigh-Side-Stretch.gif', muscles: ['quadriceps'] },
+  { id: 'e15', name: 'Standing Cross Leg Hamstring Stretch', description: 'Cross one leg over the other and reach for your toes.', durationSeconds: 15, imageUrl: '/exercises/Standing-Cross-Leg-Hamstring-Stretch.gif', muscles: ['hamstring'] },
+  { id: 'e16', name: 'Standing Quadriceps Stretch', description: 'Pull one foot up behind you towards your glutes.', durationSeconds: 15, imageUrl: '/exercises/Standing-Quadriceps-Stretch.gif', muscles: ['quadriceps'] }
 ];
 
 const generateDays = (duration: number, baseCal: number): WorkoutDay[] => {
@@ -108,6 +117,30 @@ export const singleWorkouts = [
       { name: 'Burpees', durationSeconds: 30, id: 'burpee' },
       { name: 'Jumping Jacks', durationSeconds: 30, id: 'jumping-jack' },
       { name: 'Mountain Climbers', durationSeconds: 30, id: 'mountain-climber' }
+    ]
+  },
+  {
+    id: '200m-interval',
+    title: '200m Interval Running Workout',
+    description: 'Interval Running Workout For Speed and Fat Burning. For Beginners.',
+    caloriesBurned: 350,
+    exercises: [
+      { name: 'Walking', durationSeconds: 300, id: 'walking' },
+      { name: 'Briskly Walking', durationSeconds: 180, id: 'brisk-walk' },
+      { name: 'Fast Feet Run', durationSeconds: 30, id: 'fast-feet' },
+      { name: 'High Knee Skips', durationSeconds: 30, id: 'knee-skips' },
+      { name: 'Running', durationSeconds: 45, id: 'run-1' }, // 200m sprint 70%
+      { name: 'Walking', durationSeconds: 120, id: 'walk-1' }, // 2-3 min rest
+      { name: 'Running', durationSeconds: 45, id: 'run-2' }, // 200m sprint 75%
+      { name: 'Walking', durationSeconds: 120, id: 'walk-2' },
+      { name: 'Running', durationSeconds: 40, id: 'run-3' }, // 200m sprint 80%
+      { name: 'Walking', durationSeconds: 120, id: 'walk-3' },
+      { name: 'Running', durationSeconds: 40, id: 'run-4' }, // 200m sprint 80%
+      { name: 'Walking', durationSeconds: 120, id: 'walk-4' },
+      { name: 'Half Kneeling Hip Flexor Stretch', durationSeconds: 15, id: 'stretch-1' },
+      { name: 'Inner Thigh Side Stretch', durationSeconds: 15, id: 'stretch-2' },
+      { name: 'Standing Cross Leg Hamstring Stretch', durationSeconds: 15, id: 'stretch-3' },
+      { name: 'Standing Quadriceps Stretch', durationSeconds: 15, id: 'stretch-4' }
     ]
   }
 ];
