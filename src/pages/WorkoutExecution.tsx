@@ -1,122 +1,205 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Play, Pause, SkipForward, CheckCircle, Volume2, VolumeX } from 'lucide-react';
-import { sampleWorkouts } from '../data/exercises';
+import { thirtyDayPlan } from '../data/exercises';
 import type { Exercise } from '../data/exercises';
+import { saveCompletedDay } from '../data/db';
 import './WorkoutExecution.css';
 
-export default function WorkoutExecution() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const workout = sampleWorkouts.find(w => w.id === id);
+type QueueItem = 
+  | { type: 'exercise'; exercise: Exercise }
+  | { type: 'rest'; nextExerciseName: string; duration: number };
 
-  const [exerciseIndex, setExerciseIndex] = useState(0);
+const playBeep = (freq = 440, duration = 300) => {
+  try {
+    const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = freq;
+    osc.start();
+    gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration/1000);
+    osc.stop(ctx.currentTime + duration/1000);
+  } catch (e) { console.error('AudioContext error', e); }
+};
+
+const playStartBeep = () => playBeep(880, 500);
+const playStopBeep = () => playBeep(300, 800);
+
+export default function WorkoutExecution() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const dayNumber = parseInt(id || '1', 10);
+  const dayPlan = thirtyDayPlan.days.find(d => d.dayNumber === dayNumber);
+  
+  const [queue, setQueue] = useState<QueueItem[]>([]);
+  const [queueIndex, setQueueIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [isActive, setIsActive] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
 
-  // Combine all exercises into a linear sequence for easier navigation
-  const allExercises: { phase: string; exercise: Exercise }[] = [];
-  if (workout) {
-    workout.warmUp.forEach(e => allExercises.push({ phase: 'warmUp', exercise: e }));
-    workout.main.forEach(e => allExercises.push({ phase: 'main', exercise: e }));
-    workout.coolDown.forEach(e => allExercises.push({ phase: 'coolDown', exercise: e }));
-  }
+  useEffect(() => {
+    if (!dayPlan || dayPlan.isRestDay) return;
+    
+    const newQueue: QueueItem[] = [];
+    dayPlan.exercises.forEach((ex, idx) => {
+      newQueue.push({ type: 'exercise', exercise: ex });
+      if (idx < dayPlan.exercises.length - 1) {
+        newQueue.push({ type: 'rest', nextExerciseName: dayPlan.exercises[idx + 1].name, duration: 10 });
+      }
+    });
+    setQueue(newQueue);
+  }, [dayPlan]);
 
-  const current = allExercises[exerciseIndex];
-  
-  const timerRef = useRef<number | null>(null);
+  const current = queue[queueIndex];
 
   useEffect(() => {
-    if (current) {
+    if (!current) return;
+    
+    setIsActive(false); 
+    
+    if (current.type === 'exercise') {
       setTimeLeft(current.exercise.durationSeconds);
-      setIsActive(false); // Pause timer initially
-      speak(`Up next: ${current.exercise.name}. ${current.exercise.description}. Ready, go!`);
+      speak(`Get ready. Next: ${current.exercise.name}.`, true);
+    } else {
+      setTimeLeft(current.duration);
+      speak(`Rest for ${current.duration} seconds. Next up is ${current.nextExerciseName}.`, true);
     }
-  }, [exerciseIndex, current, voiceEnabled]);
+  }, [queueIndex, current, voiceEnabled]);
 
   useEffect(() => {
+    let interval: any;
     if (isActive && timeLeft > 0) {
-      timerRef.current = window.setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
+      interval = setInterval(() => {
+        setTimeLeft(prev => {
+          if (prev === 4 && voiceEnabled) {
+             speak("3. 2. 1.", false);
+          }
+          if (prev <= 1) {
+            clearInterval(interval);
+            playStopBeep();
+            handleNext();
+            return 0;
+          }
+          return prev - 1;
+        });
       }, 1000);
-    } else if (isActive && timeLeft === 0) {
-      handleNext();
     }
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [isActive, timeLeft]);
+    return () => clearInterval(interval);
+  }, [isActive, timeLeft, voiceEnabled]);
 
-  const speak = (text: string) => {
+  const speak = (text: string, autoStart: boolean) => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       if (voiceEnabled) {
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.onend = () => {
-          setIsActive(true); // Auto-start timer when done speaking
-        };
+        if (autoStart) {
+          utterance.onend = () => {
+            playStartBeep();
+            setIsActive(true);
+          };
+        }
         window.speechSynthesis.speak(utterance);
-      } else {
-        // If voice is disabled, just auto-start after a brief delay
-        setTimeout(() => setIsActive(true), 1500);
+      } else if (autoStart) {
+        setTimeout(() => {
+          playStartBeep();
+          setIsActive(true);
+        }, 1500);
       }
+    } else if (autoStart) {
+        playStartBeep();
+        setIsActive(true);
     }
   };
-
-  const toggleTimer = () => setIsActive(!isActive);
 
   const handleNext = () => {
-    if (exerciseIndex < allExercises.length - 1) {
-      setExerciseIndex(prev => prev + 1);
-      setIsActive(false);
+    if (queueIndex < queue.length - 1) {
+      setQueueIndex(prev => prev + 1);
     } else {
-      // Finished
-      speak("Workout complete! Great job today.");
-      navigate('/dashboard');
+      finishDay();
+    }
+  };
+  
+  const finishDay = async () => {
+    setIsFinished(true);
+    setIsActive(false);
+    if (dayPlan && !dayPlan.isRestDay) {
+       await saveCompletedDay(dayNumber, dayPlan.caloriesBurned);
+       speak(`Congratulations! You have completed Day ${dayNumber}.`, false);
     }
   };
 
-  if (!workout || !current) return <div>Workout not found</div>;
+  if (!dayPlan) return <div className="p-4 text-center mt-8">Day not found</div>;
+  if (dayPlan.isRestDay) return (
+    <div className="workout-execution finished">
+      <h1 className="neon-text">Rest Day</h1>
+      <p className="mt-4 text-lg">Your muscles need time to recover. Enjoy your rest!</p>
+      <button className="btn btn-primary mt-6" onClick={() => navigate('/workouts')}>Back to Plan</button>
+    </div>
+  );
 
-  const progressPercentage = ((current.exercise.durationSeconds - timeLeft) / current.exercise.durationSeconds) * 100;
+  if (isFinished) {
+    return (
+      <div className="workout-execution finished">
+        <CheckCircle size={80} className="text-green mb-4" />
+        <h1 className="neon-text">Day {dayNumber} Complete!</h1>
+        <p className="mt-4 text-lg">Great job! You burned {dayPlan.caloriesBurned} calories today.</p>
+        <button className="btn btn-primary mt-8" onClick={() => navigate('/workouts')}>
+          Return to Calendar
+        </button>
+      </div>
+    );
+  }
+
+  if (!current) return <div>Loading...</div>;
+
+  const isRest = current.type === 'rest';
 
   return (
-    <div className="execution-container">
-      <header className="execution-header">
-        <div>
-          <span className="phase-badge">{current.phase.toUpperCase()}</span>
-          <h1>{current.exercise.name}</h1>
-        </div>
-        <button className="btn-icon" onClick={() => setVoiceEnabled(!voiceEnabled)}>
+    <div className="workout-execution">
+      <div className="execution-header">
+        <button className="icon-btn" onClick={() => setVoiceEnabled(!voiceEnabled)}>
           {voiceEnabled ? <Volume2 size={24} /> : <VolumeX size={24} />}
         </button>
-      </header>
+        <div className="workout-progress">
+          Step {queueIndex + 1} of {queue.length}
+        </div>
+      </div>
 
-      <div className="visual-area glass-panel">
-        {current.exercise.imageUrl && (
-          <img src={current.exercise.imageUrl} alt={current.exercise.name} className="exercise-img" />
+      <div className={`exercise-display glass-panel ${isRest ? 'is-rest' : ''}`}>
+        {isRest ? (
+          <div className="rest-display">
+            <h2>REST</h2>
+            <p>Up Next: {current.nextExerciseName}</p>
+          </div>
+        ) : (
+          <>
+            {current.exercise.imageUrl && (
+              <div className="image-wrapper">
+                 <img src={current.exercise.imageUrl} alt={current.exercise.name} className="exercise-image" />
+              </div>
+            )}
+            <h2 className="exercise-title">{current.exercise.name}</h2>
+            <p className="exercise-description">{current.exercise.description}</p>
+          </>
         )}
       </div>
 
-      <div className="timer-area glass-panel">
-        <div className="timer-display neon-text">
-          {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
-        </div>
-        <div className="progress-bar-container">
-          <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
+      <div className="timer-section">
+        <div className="timer-display neon-text" style={{ color: isRest ? 'var(--warning-color)' : 'var(--primary-color)' }}>
+          {Math.floor(timeLeft / 60).toString().padStart(2, '0')}:
+          {(timeLeft % 60).toString().padStart(2, '0')}
         </div>
       </div>
 
-      <div className="controls-area">
-        <button className="btn btn-primary control-btn" onClick={toggleTimer}>
+      <div className="execution-controls">
+        <button className="btn btn-secondary icon-btn-large" onClick={() => setIsActive(!isActive)}>
           {isActive ? <Pause size={32} /> : <Play size={32} />}
         </button>
-        <button className="btn btn-outline control-btn" onClick={handleNext}>
+        <button className="btn btn-secondary icon-btn-large" onClick={handleNext}>
           <SkipForward size={32} />
-        </button>
-        <button className="btn btn-primary control-btn" onClick={() => handleNext()}>
-          <CheckCircle size={32} /> Done
         </button>
       </div>
     </div>

@@ -1,76 +1,150 @@
-.workouts-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.workouts-page {
+  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.workouts-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
 .workouts-header h1 {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.workouts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-}
-
-.workout-card {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.workout-card:hover {
-  transform: translateY(-5px);
-}
-
-.workout-card-header {
-  display: flex;
-  gap: 0.5rem;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
 }
 
-.badge {
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+.workouts-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.progress-summary {
+  display: inline-flex;
+  gap: 3rem;
+  padding: 1.5rem 3rem;
+  border-radius: var(--radius-lg);
+}
+
+.progress-summary .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-summary .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.progress-summary .stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 1px;
 }
 
-.badge-beginner {
-  background-color: rgba(16, 185, 129, 0.2);
-  color: var(--success-color);
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
 }
 
-.badge-intermediate {
-  background-color: rgba(245, 158, 11, 0.2);
-  color: var(--warning-color);
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.badge-advanced {
-  background-color: rgba(239, 68, 68, 0.2);
-  color: var(--danger-color);
+.calendar-day::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--primary-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
-.badge-category {
-  background-color: rgba(59, 130, 246, 0.2);
-  color: var(--accent-color);
-}
-
-.workout-card h2 {
+.day-number {
   font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
-.workout-stats {
-  margin-top: 1rem;
+.calorie-label {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: var(--primary-color);
   font-weight: 500;
+}
+
+.rest-label {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.status-icon {
+  margin-top: 0.5rem;
+}
+
+.text-green {
+  color: #10b981;
+}
+
+/* Status States */
+.calendar-day.available:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+}
+
+.calendar-day.completed {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.calendar-day.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.calendar-day.rest-day {
+  background: rgba(255, 255, 255, 0.02);
+  cursor: default;
+  border-style: dashed;
+}
+
+@media (max-width: 768px) {
+  .workouts-page {
+    padding: 1rem;
+  }
+  
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .calendar-day {
+    padding: 0.5rem;
+  }
+  
+  .day-number {
+    font-size: 1.1rem;
+  }
 }

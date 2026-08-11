@@ -40,6 +40,45 @@
   padding: 0;
 }
 
+.exercise-display.is-rest {
+  border-color: var(--warning-color);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.rest-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.rest-display h2 {
+  font-size: 3rem;
+  color: var(--warning-color);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.rest-display p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+}
+
+.exercise-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .exercise-img {
   width: 100%;
   height: 100%;
