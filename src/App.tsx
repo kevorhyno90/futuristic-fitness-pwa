@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import Sidebar from './components/Sidebar';
 import Workouts from './pages/Workouts';
 import WorkoutExecution from './pages/WorkoutExecution';
 import Analytics from './pages/Analytics';
@@ -10,33 +10,21 @@ import MusicPlayer from './components/MusicPlayer';
 import InstallButton from './components/InstallButton';
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
-  };
-
   return (
     <Router>
-      <div className="app-container">
-        <Sidebar theme={theme} toggleTheme={toggleTheme} />
-        <main className="main-content">
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/workouts/:planId" element={<Workouts />} />
-            <Route path="/workout/:planId/:dayNumber" element={<WorkoutExecution />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/ai" element={<AiAssistant />} />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
-        </main>
-        <MusicPlayer />
-        <InstallButton />
+      <Navbar />
+      <div className="app-container" style={{ padding: '2rem' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/workouts/:planId" element={<Workouts />} />
+          <Route path="/workout/:planId/:dayNumber" element={<WorkoutExecution />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/ai" element={<AiAssistant />} />
+        </Routes>
       </div>
+      <MusicPlayer />
+      <InstallButton />
     </Router>
   );
 }

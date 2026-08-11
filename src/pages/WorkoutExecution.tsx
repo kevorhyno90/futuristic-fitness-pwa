@@ -132,9 +132,9 @@ export default function WorkoutExecution() {
   if (workoutStatus === 'setup') {
     return (
       <div className="workout-execution setup-phase">
-        <h1 className="neon-text" style={{ marginBottom: '2rem' }}>Customize Workout</h1>
+        <h1 style={{ marginBottom: '2rem', fontSize: '2.5rem', color: 'var(--text-primary)' }}>Customize Workout</h1>
         
-        <div className="config-card glass-panel">
+        <div className="config-card">
           <h3 className="config-title">Exercise Duration</h3>
           <div className="options-grid">
             {[0, 20, 30, 45, 60, 90, 120].map(val => (
@@ -149,7 +149,7 @@ export default function WorkoutExecution() {
           </div>
         </div>
 
-        <div className="config-card glass-panel" style={{ marginTop: '1.5rem', marginBottom: '3rem' }}>
+        <div className="config-card" style={{ marginTop: '1.5rem', marginBottom: '3rem' }}>
           <h3 className="config-title">Number of Rounds</h3>
           <div className="options-grid">
             {[1, 2, 3, 4, 5].map(val => (
@@ -174,8 +174,8 @@ export default function WorkoutExecution() {
   if (workoutStatus === 'finished') {
     return (
       <div className="workout-execution finished">
-        <CheckCircle size={80} className="text-green mb-4" />
-        <h1 className="neon-text">Day {dayNumber} Complete!</h1>
+        <CheckCircle size={80} className="text-green mb-4" style={{ color: 'var(--success-color)' }} />
+        <h1 style={{ fontSize: '2.5rem', color: 'var(--text-primary)' }}>Day {dayNumber} Complete!</h1>
         <p className="mt-4 text-lg">Great job! You burned {dayPlan.caloriesBurned * customRounds} calories today.</p>
         <button className="btn btn-primary mt-8" onClick={() => navigate(`/workouts/${planId}`)}>
           Return to Calendar
