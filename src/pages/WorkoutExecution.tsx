@@ -119,9 +119,15 @@ export default function WorkoutExecution() {
 
   const handleNext = () => {
     if (queueIndex < queue.length - 1) {
-      setQueueIndex(prev => prev + 1);
+      setQueueIndex(queueIndex + 1);
     } else {
       finishDay();
+    }
+  };
+
+  const handlePrevious = () => {
+    if (queueIndex > 0) {
+      setQueueIndex(queueIndex - 1);
     }
   };
   
