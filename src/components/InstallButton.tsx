@@ -3,19 +3,26 @@ import { Download } from 'lucide-react';
 import './InstallButton.css';
 
 export default function InstallButton() {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>((window as any).deferredInstallPrompt);
+  const [isVisible, setIsVisible] = useState(!!(window as any).deferredInstallPrompt);
 
   useEffect(() => {
+    const handleReady = () => {
+      setDeferredPrompt((window as any).deferredInstallPrompt);
+      setIsVisible(true);
+    };
+
+    window.addEventListener('pwa-install-ready', handleReady);
+    
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e);
       setIsVisible(true);
     };
-
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
     return () => {
+      window.removeEventListener('pwa-install-ready', handleReady);
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     };
   }, []);
@@ -29,6 +36,7 @@ export default function InstallButton() {
     
     setDeferredPrompt(null);
     setIsVisible(false);
+    (window as any).deferredInstallPrompt = null;
   };
 
   if (!isVisible) return null;

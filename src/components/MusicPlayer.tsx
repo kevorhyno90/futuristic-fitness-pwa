@@ -18,12 +18,21 @@ export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play().catch(e => console.log('Audio play failed:', e));
-      } else {
-        audioRef.current.pause();
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          if (error.name !== 'AbortError') {
+            console.error('Audio playback error:', error);
+            setIsPlaying(false);
+          }
+        });
       }
+    } else {
+      audio.pause();
     }
   }, [isPlaying, currentTrackIndex]);
 
