@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Play, Pause, SkipForward, CheckCircle, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, SkipForward, CheckCircle } from 'lucide-react';
 import { thirtyDayPlan } from '../data/exercises';
 import type { Exercise } from '../data/exercises';
 import { saveCompletedDay } from '../data/db';
@@ -38,7 +38,6 @@ export default function WorkoutExecution() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-  const [voiceEnabled, setVoiceEnabled] = useState(true);
 
   useEffect(() => {
     if (!dayPlan || dayPlan.isRestDay) return;
@@ -62,21 +61,24 @@ export default function WorkoutExecution() {
     
     if (current.type === 'exercise') {
       setTimeLeft(current.exercise.durationSeconds);
-      speak(`Get ready. Next: ${current.exercise.name}.`, true);
     } else {
       setTimeLeft(current.duration);
-      speak(`Rest for ${current.duration} seconds. Next up is ${current.nextExerciseName}.`, true);
     }
-  }, [queueIndex, current, voiceEnabled]);
+    
+    // Auto-start after a brief 1.5s delay for visual focus
+    const timer = setTimeout(() => {
+      playStartBeep();
+      setIsActive(true);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
+  }, [queueIndex, current]);
 
   useEffect(() => {
     let interval: any;
     if (isActive && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft(prev => {
-          if (prev === 4 && voiceEnabled) {
-             speak("3. 2. 1.", false);
-          }
           if (prev <= 1) {
             clearInterval(interval);
             playStopBeep();
@@ -88,31 +90,7 @@ export default function WorkoutExecution() {
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [isActive, timeLeft, voiceEnabled]);
-
-  const speak = (text: string, autoStart: boolean) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      if (voiceEnabled) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        if (autoStart) {
-          utterance.onend = () => {
-            playStartBeep();
-            setIsActive(true);
-          };
-        }
-        window.speechSynthesis.speak(utterance);
-      } else if (autoStart) {
-        setTimeout(() => {
-          playStartBeep();
-          setIsActive(true);
-        }, 1500);
-      }
-    } else if (autoStart) {
-        playStartBeep();
-        setIsActive(true);
-    }
-  };
+  }, [isActive, timeLeft]);
 
   const handleNext = () => {
     if (queueIndex < queue.length - 1) {
@@ -127,7 +105,6 @@ export default function WorkoutExecution() {
     setIsActive(false);
     if (dayPlan && !dayPlan.isRestDay) {
        await saveCompletedDay(dayNumber, dayPlan.caloriesBurned);
-       speak(`Congratulations! You have completed Day ${dayNumber}.`, false);
     }
   };
 
@@ -160,10 +137,7 @@ export default function WorkoutExecution() {
   return (
     <div className="workout-execution">
       <div className="execution-header">
-        <button className="icon-btn" onClick={() => setVoiceEnabled(!voiceEnabled)}>
-          {voiceEnabled ? <Volume2 size={24} /> : <VolumeX size={24} />}
-        </button>
-        <div className="workout-progress">
+        <div className="workout-progress" style={{ margin: '0 auto' }}>
           Step {queueIndex + 1} of {queue.length}
         </div>
       </div>
