@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Play, Pause, SkipForward, CheckCircle } from 'lucide-react';
+import Model from 'react-body-highlighter';
 import { workoutPlans } from '../data/exercises';
 import type { Exercise } from '../data/exercises';
 import { saveCompletedDay } from '../data/db';
@@ -159,12 +160,21 @@ export default function WorkoutExecution() {
             )}
             <h2 className="exercise-title">{current.exercise.name}</h2>
             {current.exercise.muscles && (
-              <div className="exercise-muscles">
-                <span className="muscle-label">Muscles Worked:</span>
-                <div className="muscle-tags">
-                  {current.exercise.muscles.map(m => (
-                    <span key={m} className="muscle-tag">{m}</span>
-                  ))}
+              <div className="exercise-muscles-visual">
+                <span className="muscle-label">Targeted Muscles</span>
+                <div className="models-container">
+                  <Model
+                    data={[{ name: current.exercise.name, muscles: current.exercise.muscles as any }]}
+                    style={{ width: '8rem', height: '12rem' }}
+                    highlightedColors={['#ef4444', '#ef4444']}
+                    type="anterior"
+                  />
+                  <Model
+                    data={[{ name: current.exercise.name, muscles: current.exercise.muscles as any }]}
+                    style={{ width: '8rem', height: '12rem' }}
+                    highlightedColors={['#ef4444', '#ef4444']}
+                    type="posterior"
+                  />
                 </div>
               </div>
             )}
