@@ -27,8 +27,8 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/workouts" element={<Workouts />} />
-            <Route path="/workout/:id" element={<WorkoutExecution />} />
+            <Route path="/workouts/:planId" element={<Workouts />} />
+            <Route path="/workout/:planId/:dayNumber" element={<WorkoutExecution />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/ai" element={<AiAssistant />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />

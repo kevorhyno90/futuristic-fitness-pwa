@@ -17,6 +17,7 @@ export const saveWeight = async (weight: number) => {
 };
 
 export interface CompletedDayRecord {
+  planId: string;
   dayNumber: number;
   date: string;
   calories: number;
@@ -26,11 +27,11 @@ export const getCompletedDays = async (): Promise<CompletedDayRecord[]> => {
   return (await get('fitai-completed-days')) || [];
 };
 
-export const saveCompletedDay = async (dayNumber: number, calories: number) => {
+export const saveCompletedDay = async (planId: string, dayNumber: number, calories: number) => {
   await update('fitai-completed-days', (val: any) => {
     const days: CompletedDayRecord[] = val || [];
-    if (!days.find(d => d.dayNumber === dayNumber)) {
-      days.push({ dayNumber, date: new Date().toISOString(), calories });
+    if (!days.find(d => d.dayNumber === dayNumber && d.planId === planId)) {
+      days.push({ planId, dayNumber, date: new Date().toISOString(), calories });
     }
     return days;
   });

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Play, Pause, SkipForward, CheckCircle } from 'lucide-react';
-import { thirtyDayPlan } from '../data/exercises';
+import { workoutPlans } from '../data/exercises';
 import type { Exercise } from '../data/exercises';
 import { saveCompletedDay } from '../data/db';
 import './WorkoutExecution.css';
@@ -28,10 +28,12 @@ const playStartBeep = () => playBeep(880, 500);
 const playStopBeep = () => playBeep(300, 800);
 
 export default function WorkoutExecution() {
-  const { id } = useParams();
+  const { planId, dayNumber: dayNumberStr } = useParams();
   const navigate = useNavigate();
-  const dayNumber = parseInt(id || '1', 10);
-  const dayPlan = thirtyDayPlan.days.find(d => d.dayNumber === dayNumber);
+  const dayNumber = parseInt(dayNumberStr || '1', 10);
+  
+  const plan = workoutPlans.find(p => p.id === planId);
+  const dayPlan = plan?.days.find(d => d.dayNumber === dayNumber);
   
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [queueIndex, setQueueIndex] = useState(0);
@@ -103,8 +105,8 @@ export default function WorkoutExecution() {
   const finishDay = async () => {
     setIsFinished(true);
     setIsActive(false);
-    if (dayPlan && !dayPlan.isRestDay) {
-       await saveCompletedDay(dayNumber, dayPlan.caloriesBurned);
+    if (planId && dayPlan && !dayPlan.isRestDay) {
+       await saveCompletedDay(planId, dayNumber, dayPlan.caloriesBurned);
     }
   };
 
@@ -113,7 +115,7 @@ export default function WorkoutExecution() {
     <div className="workout-execution finished">
       <h1 className="neon-text">Rest Day</h1>
       <p className="mt-4 text-lg">Your muscles need time to recover. Enjoy your rest!</p>
-      <button className="btn btn-primary mt-6" onClick={() => navigate('/workouts')}>Back to Plan</button>
+      <button className="btn btn-primary mt-6" onClick={() => navigate(`/workouts/${planId}`)}>Back to Plan</button>
     </div>
   );
 
@@ -123,7 +125,7 @@ export default function WorkoutExecution() {
         <CheckCircle size={80} className="text-green mb-4" />
         <h1 className="neon-text">Day {dayNumber} Complete!</h1>
         <p className="mt-4 text-lg">Great job! You burned {dayPlan.caloriesBurned} calories today.</p>
-        <button className="btn btn-primary mt-8" onClick={() => navigate('/workouts')}>
+        <button className="btn btn-primary mt-8" onClick={() => navigate(`/workouts/${planId}`)}>
           Return to Calendar
         </button>
       </div>

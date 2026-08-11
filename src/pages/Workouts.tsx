@@ -1,22 +1,27 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { thirtyDayPlan } from '../data/exercises';
-import { getCompletedDays } from '../data/db';
-import type { CompletedDayRecord } from '../data/db';
-import { CheckCircle, Lock } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { workoutPlans } from '../data/exercises';
+import { getCompletedDays, CompletedDayRecord } from '../data/db';
+import { CheckCircle, Lock, ArrowLeft } from 'lucide-react';
 import './Workouts.css';
 
 export default function Workouts() {
+  const { planId } = useParams();
   const navigate = useNavigate();
   const [completedDays, setCompletedDays] = useState<CompletedDayRecord[]>([]);
+
+  const plan = workoutPlans.find(p => p.id === planId);
 
   useEffect(() => {
     const loadCompleted = async () => {
       const days = await getCompletedDays();
-      setCompletedDays(days);
+      // Filter by the current plan
+      setCompletedDays(days.filter(d => d.planId === planId));
     };
     loadCompleted();
-  }, []);
+  }, [planId]);
+
+  if (!plan) return <div className="p-4">Plan not found</div>;
 
   const isDayCompleted = (dayNumber: number) => {
     return completedDays.some(d => d.dayNumber === dayNumber);
@@ -24,22 +29,24 @@ export default function Workouts() {
 
   const isDayLocked = (dayNumber: number) => {
     if (dayNumber === 1) return false;
-    // Basic logic: a day is locked if the previous day isn't completed.
-    // For a strict 30-day challenge, we enforce order.
     return !completedDays.some(d => d.dayNumber === dayNumber - 1);
   };
 
   const handleDayClick = (dayNumber: number, isRestDay: boolean) => {
     if (isRestDay) return;
     if (isDayLocked(dayNumber)) return;
-    navigate(`/workout/${dayNumber}`);
+    navigate(`/workout/${planId}/${dayNumber}`);
   };
 
   return (
     <div className="workouts-page">
+      <button className="back-btn" onClick={() => navigate('/dashboard')}>
+        <ArrowLeft size={20} /> Back to Categories
+      </button>
+
       <header className="workouts-header">
-        <h1>{thirtyDayPlan.title}</h1>
-        <p>{thirtyDayPlan.description}</p>
+        <h1>{plan.title}</h1>
+        <p>{plan.description}</p>
         
         <div className="progress-summary glass-panel">
           <div className="stat">
@@ -54,7 +61,7 @@ export default function Workouts() {
       </header>
 
       <div className="calendar-grid">
-        {thirtyDayPlan.days.map((day) => {
+        {plan.days.map((day) => {
           const completed = isDayCompleted(day.dayNumber);
           const locked = isDayLocked(day.dayNumber);
           
