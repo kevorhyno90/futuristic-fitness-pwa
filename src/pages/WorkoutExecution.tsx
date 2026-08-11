@@ -40,20 +40,29 @@ export default function WorkoutExecution() {
   const [queueIndex, setQueueIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
+  
+  const [workoutStatus, setWorkoutStatus] = useState<'setup' | 'running' | 'finished'>('setup');
+  const [customDuration, setCustomDuration] = useState<number>(0);
+  const [customRounds, setCustomRounds] = useState<number>(1);
 
-  useEffect(() => {
+  const handleStartWorkout = () => {
     if (!dayPlan || dayPlan.isRestDay) return;
     
     const newQueue: QueueItem[] = [];
-    dayPlan.exercises.forEach((ex, idx) => {
-      newQueue.push({ type: 'exercise', exercise: ex });
-      if (idx < dayPlan.exercises.length - 1) {
-        newQueue.push({ type: 'rest', nextExerciseName: dayPlan.exercises[idx + 1].name, duration: 10 });
-      }
-    });
+    for (let r = 0; r < customRounds; r++) {
+      dayPlan.exercises.forEach((ex, idx) => {
+        const modifiedExercise = { ...ex, durationSeconds: customDuration > 0 ? customDuration : ex.durationSeconds };
+        newQueue.push({ type: 'exercise', exercise: modifiedExercise });
+        
+        if (idx < dayPlan.exercises.length - 1 || r < customRounds - 1) {
+           const nextEx = idx < dayPlan.exercises.length - 1 ? dayPlan.exercises[idx + 1] : dayPlan.exercises[0];
+           newQueue.push({ type: 'rest', nextExerciseName: nextEx.name, duration: 10 });
+        }
+      });
+    }
     setQueue(newQueue);
-  }, [dayPlan]);
+    setWorkoutStatus('running');
+  };
 
   const current = queue[queueIndex];
 
@@ -104,10 +113,10 @@ export default function WorkoutExecution() {
   };
   
   const finishDay = async () => {
-    setIsFinished(true);
+    setWorkoutStatus('finished');
     setIsActive(false);
     if (planId && dayPlan && !dayPlan.isRestDay) {
-       await saveCompletedDay(planId, dayNumber, dayPlan.caloriesBurned);
+       await saveCompletedDay(planId, dayNumber, dayPlan.caloriesBurned * customRounds);
     }
   };
 
@@ -120,12 +129,54 @@ export default function WorkoutExecution() {
     </div>
   );
 
-  if (isFinished) {
+  if (workoutStatus === 'setup') {
+    return (
+      <div className="workout-execution setup-phase">
+        <h1 className="neon-text" style={{ marginBottom: '2rem' }}>Customize Workout</h1>
+        
+        <div className="config-card glass-panel">
+          <h3 className="config-title">Exercise Duration</h3>
+          <div className="options-grid">
+            {[0, 20, 30, 45, 60, 90, 120].map(val => (
+              <button 
+                key={val} 
+                className={`config-btn ${customDuration === val ? 'active' : ''}`}
+                onClick={() => setCustomDuration(val)}
+              >
+                {val === 0 ? 'Plan Default' : val >= 60 ? `${val/60}m` : `${val}s`}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="config-card glass-panel" style={{ marginTop: '1.5rem', marginBottom: '3rem' }}>
+          <h3 className="config-title">Number of Rounds</h3>
+          <div className="options-grid">
+            {[1, 2, 3, 4, 5].map(val => (
+              <button 
+                key={val} 
+                className={`config-btn ${customRounds === val ? 'active' : ''}`}
+                onClick={() => setCustomRounds(val)}
+              >
+                {val} {val === 1 ? 'Round' : 'Rounds'}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button className="btn btn-primary btn-large" onClick={handleStartWorkout} style={{ width: '100%', padding: '1rem', fontSize: '1.2rem' }}>
+          INITIALIZE SEQUENCE
+        </button>
+      </div>
+    );
+  }
+
+  if (workoutStatus === 'finished') {
     return (
       <div className="workout-execution finished">
         <CheckCircle size={80} className="text-green mb-4" />
         <h1 className="neon-text">Day {dayNumber} Complete!</h1>
-        <p className="mt-4 text-lg">Great job! You burned {dayPlan.caloriesBurned} calories today.</p>
+        <p className="mt-4 text-lg">Great job! You burned {dayPlan.caloriesBurned * customRounds} calories today.</p>
         <button className="btn btn-primary mt-8" onClick={() => navigate(`/workouts/${planId}`)}>
           Return to Calendar
         </button>
