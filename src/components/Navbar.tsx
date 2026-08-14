@@ -9,8 +9,8 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <Dumbbell size={28} className="logo-icon" />
-          <span>FitnessPlanner</span>
+          <Dumbbell className="brand-icon" />
+          <span>Devin's Fitness Planner</span>
         </Link>
         <ul className="navbar-menu">
           <li>

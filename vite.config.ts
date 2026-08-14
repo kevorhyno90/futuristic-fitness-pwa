@@ -7,10 +7,10 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
+      includeAssets: ['favicon.png'],
       manifest: {
-        name: 'Futuristic Fitness PWA',
-        short_name: 'FitAI',
+        name: "Devin's Fitness Planner",
+        short_name: "DevinFit",
         description: 'Ultimate offline-capable fitness and health companion',
         theme_color: '#09090b',
         background_color: '#09090b',
@@ -32,6 +32,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,gif,webp,woff2}']
+      },
+      devOptions: {
+        enabled: true
       }
     })
   ],

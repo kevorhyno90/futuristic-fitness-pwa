@@ -45,7 +45,7 @@ export default function InstallButton() {
     <div className="install-banner glass-panel">
       <div className="install-content">
         <div className="install-text">
-          <strong>Install FitAI</strong>
+          <strong>Install Devin's Fitness Planner</strong>
           <span>Get the full offline experience on your device.</span>
         </div>
         <button className="btn btn-primary" onClick={handleInstallClick}>

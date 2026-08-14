@@ -49,6 +49,14 @@ export const allExercises: Exercise[] = [
   { id: 'e25', name: 'Dead Bug', description: 'Lie on your back, extend opposite arm and leg while keeping core tight.', durationSeconds: 30, imageUrl: '/exercises/Alternate-Heel-Touchers.gif', muscles: ['abs', 'obliques'] },
   { id: 'e26', name: 'Bodyweight Sumo Squat', description: 'Take a wide stance and squat down, keeping your back straight.', durationSeconds: 30, imageUrl: '/exercises/Jump-Squat.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
   { id: 'e27', name: 'Burpees', description: 'Drop into a squat, kick back to a plank, return to squat, and jump up.', durationSeconds: 30, imageUrl: '/exercises/Jump-Squat.gif', muscles: ['quadriceps', 'gluteal', 'chest', 'abs'] },
+  { id: 'e28', name: 'Burpee Long Jump', description: 'A burpee followed by a long jump forward.', durationSeconds: 30, imageUrl: '/exercises/Burpee-Long-Jump.gif', muscles: ['quadriceps', 'gluteal', 'chest', 'abs'] },
+  { id: 'e29', name: 'Bear Crawl', description: 'Crawl forward on hands and feet, keeping hips low.', durationSeconds: 30, imageUrl: '/exercises/Bear-Crawl.gif', muscles: ['abs', 'quadriceps', 'front-deltoids'] },
+  { id: 'e30', name: '5 Dot Drills', description: 'Agility drill jumping between 5 dots on the floor.', durationSeconds: 30, imageUrl: '/exercises/5-Dot-Drills.gif', muscles: ['calves', 'quadriceps', 'gluteal'] },
+  { id: 'e31', name: 'Navy Seal Burpee', description: 'A more intense burpee incorporating mountain climber knee tucks.', durationSeconds: 30, imageUrl: '/exercises/Navy-Seal-Burpee.gif', muscles: ['quadriceps', 'gluteal', 'chest', 'abs'] },
+  { id: 'e32', name: 'Depth Jump to Hurdle Hop', description: 'Drop off a box, immediately jump over a hurdle.', durationSeconds: 30, imageUrl: '/exercises/Depth-Jump-to-Hurdle-Hop.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
+  { id: 'e33', name: 'Power Lunge', description: 'Explosively jump and switch legs in a lunge position.', durationSeconds: 30, imageUrl: '/exercises/Power-Lunge.gif', muscles: ['quadriceps', 'gluteal', 'calves'] },
+  { id: 'e34', name: 'Shadow Boxing', description: 'Throw combinations of punches into the air.', durationSeconds: 30, imageUrl: '/exercises/Shadow-Boxing.gif', muscles: ['front-deltoids', 'chest', 'abs'] },
+  { id: 'e35', name: 'Riding Outdoor Bicycle', description: 'Cycle outdoors at a steady pace.', durationSeconds: 60, imageUrl: '/exercises/Riding-Outdoor-Bicycle.gif', muscles: ['quadriceps', 'calves', 'hamstring'] },
   { id: 'rest', name: 'Rest', description: 'Take a quick breather to recover.', durationSeconds: 10, imageUrl: '/exercises/Rest.png', muscles: [] }
 ];
 
@@ -338,6 +346,24 @@ export const singleWorkouts = [
       { name: 'Burpees', durationSeconds: 30, id: 'hiit-7-2' },
       { name: 'Rest', durationSeconds: 20, id: 'hiit-7-r2' },
       { name: 'Burpees', durationSeconds: 30, id: 'hiit-7-3' }
+    ]
+  },
+  {
+    id: 'ultimate-cardio-crusher',
+    title: 'Ultimate Cardio Crusher',
+    description: 'An intense, pure cardio workout covering dynamic and explosive movements.',
+    caloriesBurned: 450,
+    imageUrl: '/workouts/hiit.png',
+    exercises: [
+      { name: 'Burpee Long Jump', durationSeconds: 45, id: 'ucc-1' },
+      { name: 'Bear Crawl', durationSeconds: 45, id: 'ucc-2' },
+      { name: '5 Dot Drills', durationSeconds: 45, id: 'ucc-3' },
+      { name: 'Navy Seal Burpee', durationSeconds: 45, id: 'ucc-4' },
+      { name: 'Depth Jump to Hurdle Hop', durationSeconds: 45, id: 'ucc-5' },
+      { name: 'Power Lunge', durationSeconds: 45, id: 'ucc-6' },
+      { name: 'Shadow Boxing', durationSeconds: 45, id: 'ucc-7' },
+      { name: 'Riding Outdoor Bicycle', durationSeconds: 60, id: 'ucc-8' },
+      { name: 'Walking', durationSeconds: 60, id: 'ucc-9' }
     ]
   }
 ];

@@ -22,8 +22,8 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="features-section">
-        <div className="section-header">
-          <h2>Why use FitnessPlanner?</h2>
+        <div className="text-center mb-12 fade-in">
+          <h2>Why use Devin's Fitness Planner?</h2>
           <p>Everything you need to build muscle, lose weight, and stay consistent.</p>
         </div>
         
